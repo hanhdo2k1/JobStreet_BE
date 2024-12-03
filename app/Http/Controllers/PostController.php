@@ -23,6 +23,7 @@ class PostController extends Controller
                     ->orWhereNotNull("posts.company_id");
             })
             ->select("users.username", "companies.company_name", "companies.logo", "posts.title", "posts.body", "posts.id", "users.avatar", "posts.image")
+            ->orderBy("posts.created_at", "desc")
             ->get();
         return response()->json($posts);
     }
